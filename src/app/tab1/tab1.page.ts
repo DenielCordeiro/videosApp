@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +8,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(public alertController: AlertController) {}
+  constructor(
+    public alertController: AlertController,
+    public toastController: ToastController) {}
 
   async favoriteAlert() {
     const alert = await this.alertController.create({
@@ -25,13 +27,22 @@ export class Tab1Page {
         {
           text: 'Sim, favoritar!',
           handler: () => {
-            console.log('Confirm Okay');
+            this.toast();
           }
         }
       ]
     });
 
     await alert.present();
+  }
+
+  async toast() {
+    const toast = await this.toastController.create({
+      message: 'Skater adicionado aos favoritos.',
+      duration: 2000,
+      color: 'sucess'
+    });
+    toast.present();
   }
 
 }
