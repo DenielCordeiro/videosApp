@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Videos App </ion-title>
+    <ion-title> {{ titulo }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,59 +9,29 @@
 
   <ion-list>
 
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let filme of listaVideos">
 
       <ion-item lines="full">
 
         <ion-thumbnail slot="start">
-          <img src="https://th.bing.com/th/id/OIP.jvNVqrsF057QUhtTzyaaDQHaE8?pid=ImgDet&rs=1">
+          <img [src]="filme.cartaz">
         </ion-thumbnail>
 
         <ion-label class="ion-text-wrap">
           <div>
-            <h1>Zion Wright</h1>
-            <p>Skater Profissional</p>
-            <p>RedBull Skateboarding</p>
+            <h1>{{ filme.nome }}</h1>
+            <p>{{ filme.lancamento }} - {{ filme.duracao }}</p>
+            <ion-badge color="light" *ngFor="let genero of filme.generos">{{ genero }}</ion-badge>
           </div>
         </ion-label>
 
         <ion-chip color="success" outline>
-          <ion-label>1</ion-label>
+          <ion-label>{{ filme.clasificacao }}</ion-label>
         </ion-chip>
 
       </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option (click)="favoriteAlert()">
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-
-      <ion-item lines="full">
-
-        <ion-thumbnail slot="start">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Skate-leticia-bufoni.jpg">
-        </ion-thumbnail>
-
-        <ion-label class="ion-text-wrap">
-          <div>
-            <h1>Leticia Bufoni</h1>
-            <p>Skater Profissional</p>
-            <p>RedBull Skateboarding</p>
-          </div>
-        </ion-label>
-
-        <ion-chip color="success" outline>
-          <ion-label>1</ion-label>
-        </ion-chip>
-
-      </ion-item>
-
-      <ion-item-options side="end">
+      <ion-item-options color="myorange" side="end">
         <ion-item-option (click)="favoriteAlert()">
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </ion-item-option>
