@@ -2,7 +2,8 @@ export interface IFilmes {
   nome: string;
   lancamento: string;
   duracao: string;
-  clasificacao: number;
+  classificacao: number;
   cartaz: string;
   generos: string[];
+  pagina?: string;
 }

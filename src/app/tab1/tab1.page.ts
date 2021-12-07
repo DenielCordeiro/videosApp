@@ -1,6 +1,8 @@
-import { IFilmes } from './../models/IFilmes.models';
 import { Component } from '@angular/core';
+import { IFilmes } from './../models/IFilmes.models';
 import { AlertController, ToastController } from '@ionic/angular';
+import { DadosService } from './../services/dados.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -15,23 +17,33 @@ export class Tab1Page {
       nome: 'Arcane',
       lancamento: '20/09/2021',
       duracao: '42m',
-      clasificacao: 92,
+      classificacao: 92,
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg',
-      generos: ['Animação', 'Sci-Fi', 'Fantasy', 'Action', 'Adventure', 'Drama']
+      generos: ['Animação', 'Sci-Fi', 'Fantasy', 'Action', 'Adventure', 'Drama'],
+      pagina: '/arcane'
     },
     {
       nome: 'Alerta Vermelho ',
       lancamento: '05/11/2021',
       duracao: '1h 48m',
-      clasificacao: 68,
+      classificacao: 68,
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pe17f8VDfzbvbHSAKAlcORtBHmW.jpg',
-      generos: ['Ação', 'Comédia', 'Crime', 'Thriller' ]
+      generos: ['Ação', 'Comédia', 'Crime', 'Thriller' ],
+      pagina: '/alerta-vermelho'
     }
   ];
 
   constructor(
     public alertController: AlertController,
-    public toastController: ToastController) {}
+    public toastController: ToastController,
+    public dadosService: DadosService,
+    public route: Router
+  ) {}
+
+  exibirFilme(filme: IFilmes) {
+    this.dadosService.guardarDados('filme', filme);
+    this.route.navigateByUrl('/dados-filme');
+  }
 
   async favoriteAlert() {
     const alert = await this.alertController.create({

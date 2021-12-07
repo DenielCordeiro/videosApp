@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title> {{ titulo }} </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,7 @@
 
     <ion-item-sliding *ngFor="let filme of listaVideos">
 
-      <ion-item lines="full">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
 
         <ion-thumbnail slot="start">
           <img [src]="filme.cartaz">
@@ -26,7 +26,7 @@
         </ion-label>
 
         <ion-chip color="success" outline>
-          <ion-label>{{ filme.clasificacao }}</ion-label>
+          <ion-label>{{ filme.classificacao }}</ion-label>
         </ion-chip>
 
       </ion-item>
