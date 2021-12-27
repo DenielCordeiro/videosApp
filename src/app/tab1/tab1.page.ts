@@ -1,5 +1,7 @@
+import { IListFilms, IFilmeApi } from './../models/IFilmeAPI.model';
+import { FilmeService } from './../services/filme.service';
 import { Component } from '@angular/core';
-import { IFilmes } from './../models/IFilmes.models';
+import { IFilmes } from '../models/IFilme.model';
 import { AlertController, ToastController } from '@ionic/angular';
 import { DadosService } from './../services/dados.service';
 import { Router } from '@angular/router';
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page {
 
-  titulo = 'Vídeos App';
+  titulo = 'Filmes';
   listaVideos: IFilmes[] = [
     {
       nome: 'Arcane',
@@ -33,14 +35,26 @@ export class Tab1Page {
     }
   ];
 
+  listFilms: IListFilms;
+
   constructor(
     public alertController: AlertController,
     public toastController: ToastController,
     public dadosService: DadosService,
+    public filmeService: FilmeService,
     public route: Router
   ) {}
 
-  exibirFilme(filme: IFilmes) {
+  searchFilms(event: any) {
+    const search = event.target.value;
+    if(search && search.trim() !== '') {
+      this.filmeService.searchFilms(search).subscribe(data => {
+        this.listFilms = data;
+      });
+    }
+  }
+
+  showFilm(filme: IFilmeApi) {
     this.dadosService.guardarDados('filme', filme);
     this.route.navigateByUrl('/dados-filme');
   }
