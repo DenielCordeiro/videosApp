@@ -28,8 +28,8 @@
         <ion-label class="ion-text-wrap">
           <div>
             <h1>{{ filme.title }}</h1>
-            <p>{{ filme.release_date }}</p>
-            <ion-badge color="light" *ngFor="let genre of filme.genre_ids">{{ genre }}</ion-badge>
+            <p class="mb-2">{{ filme.release_date | date: 'shortDate' }}</p>
+            <ion-badge color="light" *ngFor="let idGenre of filme.genre_ids">{{ genres[idGenre] }}</ion-badge>
           </div>
         </ion-label>
 
