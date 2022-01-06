@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AlertaVermelhoPageRoutingModule } from './alerta-vermelho-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { AlertaVermelhoPage } from './alerta-vermelho.page';
+import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlertaVermelhoPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [AlertaVermelhoPage]
+  declarations: [LoginPage]
 })
-export class AlertaVermelhoPageModule {}
+export class LoginPageModule {}
